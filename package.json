@@ -1,0 +1,14 @@
+{
+  "name": "aqil-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A monochrome portfolio for Nurman Aqil Wicaksono.",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/dev.mjs --preview",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

@@ -1,0 +1,8 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f5f1;
+  --fg: #202321;
+  --muted: #62655f;
+  --line: #d5d7cf;
+  --mono: 'Segoe UI', system-ui, sans-serif;
+}
