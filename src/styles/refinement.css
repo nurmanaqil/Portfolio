@@ -1,5 +1,11 @@
 /* Light editorial direction and centered floating navigation. */
 body { font-family: 'Segoe UI', system-ui, sans-serif; }
+body { position: relative; isolation: isolate; }
+.smoke-background { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.smoke-background canvas { position: absolute; inset: -3%; width: 106%; height: 106%; }
+.smoke-soft { filter: blur(28px); opacity: .62; }
+.smoke-pixels { image-rendering: pixelated; opacity: .16; filter: blur(.3px); }
+@media print { .smoke-background { display: none; } }
 body::after { opacity: .018; }
 ::selection { background: #222820; color: #fff; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: #343b30; }
