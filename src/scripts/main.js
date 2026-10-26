@@ -1,11 +1,13 @@
 import { sessions } from './content.js';
 import { archivePose } from './archive-motion.js';
 import { initPixelCursor } from './pixel-cursor.js';
+import { initSmokeBackground } from './smoke-background.js';
 
 document.documentElement.dataset.enhanced = 'true';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+initSmokeBackground(reduceMotion);
 initPixelCursor(reduceMotion, finePointer);
 const navigation = [...document.querySelectorAll('.section-nav a')];
 const sections = [...document.querySelectorAll('.page-section')];
