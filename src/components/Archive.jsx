@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { archiveSessions as sessions } from '../data/content.mjs';
 
 export function ArchiveImage({ session, className = '', ...props }) {
-  return <img className={className} src={session.image} alt={session.alt} width={session.width || 1440} height={session.height || 810} loading="lazy" decoding="async" {...props} />;
+  return <img className={className} src={session.image} alt={session.alt} width={session.width} height={session.height} loading="lazy" decoding="async" {...props} />;
 }
 
 export default function Archive() {
@@ -44,7 +44,7 @@ export default function Archive() {
         <div className="orbit-center"><span className="eyebrow">PEOPLE & COORDINATION</span><strong>PCM<span>in motion.</span></strong><span className="mono">AIESEC IN UNS / 2026–2027</span></div>
         <div className="archive-grid orbit-ring">{sessions.map((session, index) => <a key={session.id} href={session.image} className="archive-item" data-archive-index={index} aria-label={`Open ${session.caption}`} aria-haspopup="dialog"
           onClick={event => open(event, index)} onPointerEnter={event => showPreview(event, session)} onPointerMove={event => showPreview(event, session)} onPointerLeave={hidePreview} onFocus={event => showPreview(event, session)} onBlur={hidePreview}>
-          <ArchiveImage session={session} /><span className="archive-caption mono"><span>{session.caption.toUpperCase()}</span><span aria-hidden="true">↗</span></span>
+          <ArchiveImage session={session} /><span className="archive-caption mono"><span>{session.caption}</span><span aria-hidden="true">↗</span></span>
         </a>)}</div>
       </div></div>
     </section>
@@ -58,8 +58,8 @@ export default function Archive() {
       onClose={() => { setSelected(null); document.body.classList.remove('dialog-open'); lastTrigger.current?.focus(); hidePreview(); }}
       onKeyDown={event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); step(event.key === 'ArrowRight' ? 1 : -1); } }}>
       <div className="dialog-toolbar mb-5 flex items-center justify-between"><span className="mono">{selected === null ? '' : `${String(selected + 1).padStart(2, '0')} / ${sessions.length}`}</span><button type="button" className="dialog-close" onClick={() => dialog.current.close()} aria-label="Close archive viewer">CLOSE <span aria-hidden="true">×</span></button></div>
-      <figure>{image && <img src={image.image} alt={image.alt} width={image.width || 1440} height={image.height || 810} />}<figcaption className="mono">{image?.caption}</figcaption></figure>
-      <div className="dialog-bottom mt-4 flex items-center justify-between gap-[15px]"><button type="button" onClick={() => step(-1)} aria-label="Previous archive image">← PREVIOUS</button><p>PROJECTS 1–{sessions.length} / COLLABORATION ARCHIVE</p><button type="button" onClick={() => step(1)} aria-label="Next archive image">NEXT →</button></div>
+      <figure>{image && <img src={image.image} alt={image.alt} width={image.width} height={image.height} />}<figcaption className="mono">{image?.caption}</figcaption></figure>
+      <div className="dialog-bottom mt-4 flex items-center justify-between gap-[15px]"><button type="button" onClick={() => step(-1)} aria-label="Previous archive image">← PREVIOUS</button><p>{sessions.length} PROJECTS / COLLABORATION ARCHIVE</p><button type="button" onClick={() => step(1)} aria-label="Next archive image">NEXT →</button></div>
     </dialog>
   </>;
 }

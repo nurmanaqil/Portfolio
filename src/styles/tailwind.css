@@ -4,15 +4,12 @@
 @import "./refinement.css" layer(components);
 
 @theme inline {
-  --color-canvas: var(--bg);
   --color-ink: var(--fg);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --font-sans: 'Segoe UI', system-ui, sans-serif;
-  --font-editorial: 'Palatino Linotype', Palatino, Georgia, serif;
 }
 
-/* Bespoke refraction/highlight treatment shared by the floating menu. */
 @utility glass-surface {
   background: var(--bg);
   background: color-mix(in srgb, var(--bg) 82%, transparent);

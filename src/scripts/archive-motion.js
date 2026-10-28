@@ -14,7 +14,6 @@ export function archivePose(index, count, progress, viewportHeight, compact = fa
     rotateZ: Math.sin(angle) * 5,
     opacity: (.4 + depth * .6) * easedFade,
     blur: (1 - easedFade) * 15,
-    depth,
   };
 }
 

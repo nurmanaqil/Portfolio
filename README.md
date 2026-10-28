@@ -32,7 +32,7 @@ Existing commands `node scripts/dev.mjs` and `node scripts/build.mjs` remain sup
 | `src/App.jsx` | Main layout and page sections |
 | `src/components/Archive.jsx` | React gallery, hover preview, and image viewer |
 | `src/hooks` | Scroll/navigation lifecycle and visual effects |
-| `src/data` | Profile, content, and 15-image archive manifest |
+| `src/data` | Profile, content, and 11-image archive manifest |
 | `src/styles/tailwind.css` | Tailwind entry, theme tokens, and glass utility |
 | `src/styles` | Custom typography and specialized animation styles |
 | `src/scripts` | Animation geometry, smoke, and cursor effects |
@@ -40,7 +40,7 @@ Existing commands `node scripts/dev.mjs` and `node scripts/build.mjs` remain sup
 | `scripts` | Vite server and prerender build |
 | `tests` | Built-content, asset, and motion checks |
 
-The archive includes ten online-session screenshots and five additional in-person photographs. Duplicate source photos are excluded. Originals remain in the local `asset/` directory; optimized images are committed in `public/assets/`.
+The archive includes six online-session screenshots and five in-person photographs. Edit each photo’s `caption` field in `src/data/content.mjs`; the same caption is used on the card, hover preview, and image viewer. Project numbers retain their original identities. Duplicate source photos are excluded. Originals remain in the local `asset/` directory; optimized images are committed in `public/assets/`.
 
 Layout, spacing, responsive breakpoints, navigation states, and UI borders use Tailwind utilities in JSX. Custom CSS handles the 3D gallery, blur, smoke, and fine typography. Tailwind is compiled by the official Vite plugin; no CDN script is used.
 

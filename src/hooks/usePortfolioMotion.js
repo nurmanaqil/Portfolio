@@ -18,6 +18,7 @@ export function usePortfolioMotion() {
     const sections = [...document.querySelectorAll('.page-section')];
     const story = [...document.querySelectorAll('.story-chapter')];
     const orbit = document.querySelector('.archive-orbit');
+    const stage = orbit.querySelector('.orbit-stage');
     const cards = [...document.querySelectorAll('.orbit-ring .archive-item')];
     const portrait = document.querySelector('.portrait-background');
     const hero = document.getElementById('intro');
@@ -41,7 +42,7 @@ export function usePortfolioMotion() {
       setActiveStory(closest);
       const bounds = orbit.getBoundingClientRect();
       const progress = Math.max(0, Math.min(1, -bounds.top / Math.max(1, bounds.height - innerHeight)));
-      const height = orbit.querySelector('.orbit-stage').clientHeight;
+      const height = stage.clientHeight;
       cards.forEach((card, index) => {
         if (reduced.matches) { card.removeAttribute('style'); return; }
         const pose = archivePose(index, cards.length, progress, height, innerWidth <= 700);
@@ -62,5 +63,5 @@ export function usePortfolioMotion() {
       stopSmoke?.(); stopPixels?.(); delete document.documentElement.dataset.enhanced;
     };
   }, []);
-  return { activeSection, activeStory, storyImage: chapters[activeStory].imageIndex };
+  return { activeSection, activeStory, storyImage: chapters[activeStory].imageId };
 }

@@ -1,4 +1,4 @@
-*,*::before,*::after {
+*, *::before, *::after {
   box-sizing:border-box
 }
 
@@ -11,7 +11,6 @@ body {
   margin:0;
   background:var(--bg);
   color:var(--fg);
-  font-family:Arial,Helvetica,sans-serif;
   -webkit-font-smoothing:antialiased
 }
 
@@ -25,17 +24,12 @@ body:after {
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='white' filter='url(%23n)' opacity='.55' d='M0 0h180v180H0z'/%3E%3C/svg%3E")
 }
 
-::selection {
-  color:#080808;
-  background:#f1f0eb
-}
-
 a {
   color:inherit;
   text-decoration:none
 }
 
-button,summary {
+button {
   color:inherit;
   font:inherit
 }
@@ -50,15 +44,15 @@ img {
   height:auto;
 }
 
-figure,p,h1,h2,h3 {
+figure, p, h1, h2, h3 {
   margin:0
 }
 
-button,a,summary {
+button, a {
   -webkit-tap-highlight-color:transparent
 }
 
-a:focus-visible,button:focus-visible,summary:focus-visible {
+a:focus-visible, button:focus-visible {
   outline:2px solid #fff;
   outline-offset:7px
 }
@@ -71,15 +65,10 @@ p {
   line-height:1.65
 }
 
-button:disabled {
-  cursor:default
-}
-
-.mono,.eyebrow {
+.mono, .eyebrow {
   font-family:var(--mono);
   font-size:10px;
-  line-height:1.6;
-  letter-spacing:.065em
+  line-height:1.6
 }
 
 .eyebrow {
@@ -88,7 +77,6 @@ button:disabled {
 }
 
 .serif {
-  font-family:Georgia,'Times New Roman',serif;
   font-weight:400;
   font-style:italic;
   letter-spacing:-.065em
@@ -111,7 +99,6 @@ button:disabled {
 
 .wordmark {
   font-size:39px;
-  font-weight:800;
   letter-spacing:-4px;
   line-height:1
 }
@@ -144,24 +131,6 @@ button:disabled {
   font-size:22px
 }
 
-.section-nav a:hover,.section-nav a[aria-current] {
-  color:#fff
-}
-
-.section-nav a[aria-current]:before {
-  content:"";
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:#fff;
-  left:-11px;
-  top:4px
-}
-
-.nav-index {
-  display:none
-}
-
 .hero {
   padding:158px 5.8% 0 17%;
   min-height:100svh;
@@ -187,56 +156,12 @@ button:disabled {
 .status-dot {
   height:5px;
   width:5px;
-  background:#d7d7d2;
   display:inline-block
 }
 
 .hero h1 {
-  font-size:clamp(55px,7.65vw,132px);
   font-weight:400;
-  line-height:.98;
-  letter-spacing:-.065em;
   white-space:nowrap
-}
-
-.hero h1 .pixel-word {
-  font-size:.935em;
-  letter-spacing:-.055em;
-  font-weight:700
-}
-
-.pixel-render {
-  display:inline-flex;
-  align-items:center;
-  gap:.12em;
-  vertical-align:baseline;
-  padding-block:.03em
-}
-
-.pixel-letter {
-  display:inline-grid;
-  grid-template-columns:repeat(5,1fr);
-  grid-template-rows:repeat(7,1fr);
-  height:.75em;
-  width:.53em;
-  gap:0
-}
-
-.pixel-letter span.on {
-  background:currentColor
-}
-
-.pixel-letter.space {
-  width:.3em
-}
-
-.hero-star {
-  position:absolute;
-  right:0;
-  top:-32px;
-  font-size:47px;
-  line-height:1;
-  font-weight:300
 }
 
 .hero-bottom {
@@ -277,11 +202,6 @@ button:disabled {
   transition:background .2s,color .2s
 }
 
-.button:hover {
-  background:var(--fg);
-  color:var(--bg)
-}
-
 .button span {
   font-family:Arial,sans-serif;
   font-size:20px;
@@ -290,10 +210,6 @@ button:disabled {
 
 .hero-intro .button {
   margin-top:25px
-}
-
-.scroll-cue {
-  display:none
 }
 
 .hero-rule {
@@ -329,126 +245,6 @@ h2 {
   max-width:280px;
   color:var(--muted);
   padding-bottom:3px
-}
-
-.project {
-  border-top:1px solid var(--line);
-  padding:33px 0 35px;
-  transition:background .25s
-}
-
-.project:last-child {
-  border-bottom:1px solid var(--line)
-}
-
-.project-heading {
-  display:grid;
-  grid-template-columns:52px 1fr 38px;
-  align-items:center
-}
-
-.project-number {
-  color:#888;
-  font-size:10px
-}
-
-.project-heading h3 {
-  font-size:clamp(24px,2.75vw,42px);
-  font-weight:400;
-  letter-spacing:-.045em;
-  margin-top:8px
-}
-
-.project-glyph {
-  font-size:35px;
-  font-weight:300;
-  transition:transform .25s
-}
-
-.project:hover .project-glyph {
-  transform:translate(4px,-4px)
-}
-
-.project-body {
-  margin:20px 38px 0 52px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px
-}
-
-.project-body>p {
-  font-size:13px;
-  color:#aaa;
-  max-width:340px
-}
-
-.stack {
-  font-size:9px;
-  color:#999;
-  display:block;
-  text-transform:uppercase;
-  margin-bottom:20px
-}
-
-.project-actions summary {
-  list-style:none;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  font:10px var(--mono);
-  min-height:44px;
-  align-items:center;
-  border-bottom:1px solid var(--line)
-}
-
-summary::-webkit-details-marker {
-  display:none
-}
-
-.project-actions summary span {
-  font-size:21px;
-  transition:transform .2s
-}
-
-details[open] summary span {
-  transform:rotate(45deg)
-}
-
-.project-detail {
-  padding-top:20px
-}
-
-.project-detail p {
-  font-size:13px;
-  color:#bbb
-}
-
-.project-detail .detail-note {
-  font-size:11px;
-  margin-top:12px;
-  color:#999
-}
-
-.text-link {
-  font-size:11px;
-  display:inline-flex;
-  gap:28px;
-  align-items:center;
-  padding:12px 0;
-  border-bottom:1px solid #666
-}
-
-.text-link:hover {
-  border-color:#fff
-}
-
-.project-detail .text-link {
-  margin-top:12px
-}
-
-.github-all {
-  margin-top:28px;
-  font-size:10px
 }
 
 .collab-heading {
@@ -562,10 +358,6 @@ details[open] summary span {
   max-width:270px
 }
 
-.chapter-inline {
-  display:none
-}
-
 .archive-header {
   border-top:1px solid var(--line);
   padding-top:28px;
@@ -610,7 +402,7 @@ details[open] summary span {
   transition:opacity .3s,filter .3s,transform .3s
 }
 
-.archive-item:hover>img,.archive-item:focus-visible>img {
+.archive-item:hover>img, .archive-item:focus-visible>img {
   opacity:1;
   transform:translateY(-4px)
 }
@@ -642,16 +434,6 @@ details[open] summary span {
   font-size:8px;
   color:#aaa;
   margin-top:15px
-}
-
-.portrait-mark {
-  position:absolute;
-  bottom:46px;
-  left:23px;
-  font:italic 90px Georgia;
-  color:#fff;
-  letter-spacing:-14px;
-  mix-blend-mode:difference
 }
 
 .about-copy .eyebrow {
@@ -729,27 +511,9 @@ details[open] summary span {
   font-size:1.13em
 }
 
-.contact-star {
-  font-size:.7em;
-  display:inline-block;
-  margin-left:30px;
-  vertical-align:top
-}
-
 .contact-bottom>p {
   font-size:12px;
   color:#aaa
-}
-
-.button-light {
-  background:var(--fg);
-  color:var(--bg);
-  border-color:var(--fg)
-}
-
-.button-light:hover {
-  background:var(--bg);
-  color:var(--fg)
 }
 
 .site-footer .wordmark {
@@ -779,9 +543,7 @@ details[open] summary span {
   pointer-events:none;
   width:min(380px,40vw);
   padding:8px;
-  background:#e5e4df;
   color:#080808;
-  box-shadow:0 20px 65px #0009;
   transform:rotate(-3deg)
 }
 
@@ -804,8 +566,6 @@ details[open] summary span {
 }
 
 .archive-dialog {
-  background:#101010;
-  color:var(--fg);
   border:1px solid #555;
   width:min(1120px,94vw);
   max-height:94svh;
@@ -813,7 +573,6 @@ details[open] summary span {
 }
 
 .archive-dialog::backdrop {
-  background:#000d;
   backdrop-filter:blur(8px)
 }
 
@@ -821,7 +580,7 @@ details[open] summary span {
   color:#aaa
 }
 
-.dialog-close,.dialog-bottom button {
+.dialog-close, .dialog-bottom button {
   background:none;
   border:0;
   padding:12px;
@@ -839,8 +598,7 @@ details[open] summary span {
   width:100%;
   max-height:65svh;
   object-fit:contain;
-  filter:grayscale(1);
-  background:#080808
+  filter:grayscale(1)
 }
 
 .archive-dialog figcaption {
@@ -857,14 +615,6 @@ details[open] summary span {
 
 body.dialog-open {
   overflow:hidden
-}
-
-.pixel-render {
-  display:inline-block;
-  height:.75em;
-  vertical-align:baseline;
-  fill:currentColor;
-  overflow:visible
 }
 
 .chapter-inline {
@@ -889,12 +639,12 @@ html[data-enhanced] .story-visual {
 }
 
 @media(min-width:1600px) {
-  .section-shell,.site-footer {
+.section-shell, .site-footer {
     margin-right:8%;
     margin-left:18%
   }
 
-  .hero {
+.hero {
     padding-right:8%;
     padding-left:18%
   }
@@ -903,7 +653,7 @@ html[data-enhanced] .story-visual {
     min-height:900px
   }
 
-  .hero-bottom {
+.hero-bottom {
     margin-bottom:90px
   }
 
@@ -922,11 +672,7 @@ html[data-enhanced] .story-visual {
     margin-top:45px
   }
 
-  .hero-star {
-    top:-36px
-  }
-
-  .story-layout {
+.story-layout {
     gap:40px
   }
 
@@ -941,7 +687,7 @@ html[data-enhanced] .story-visual {
 }
 
 @media(max-width:700px) {
-  html {
+html {
     scroll-padding-top:30px
   }
 
@@ -949,85 +695,75 @@ html[data-enhanced] .story-visual {
     font-size:33px
   }
 
-  .header-note {
+.header-note {
     display:none
   }
 
-  .header-contact {
+.header-contact {
     font-size:9px;
     gap:24px
   }
 
-  .hero {
+.hero {
     padding-top:135px;
     min-height:90svh
   }
 
-  .hero-topline {
+.hero-topline {
     font-size:7px;
     margin-bottom:53px;
     gap:20px
   }
 
-  .hero-topline>span:last-child {
+.hero-topline>span:last-child {
     white-space:nowrap
   }
 
-  .hero h1 {
+.hero h1 {
     font-size:10vw;
     line-height:1.12;
     letter-spacing:-.07em
   }
 
-  .hero h1 .pixel-word {
-    font-size:.89em
-  }
-
-  .hero-star {
-    font-size:30px;
-    top:-35px;
-    right:0
-  }
-
-  .hero-bottom {
+.hero-bottom {
     grid-template-columns:1fr;
     gap:23px;
     margin-top:34px;
     margin-bottom:45px
   }
 
-  .hero-role {
+.hero-role {
     font-size:8px
   }
 
-  .hero-role br {
+.hero-role br {
     display:none
   }
 
-  .hero-intro {
+.hero-intro {
     max-width:330px
   }
 
-  .hero-intro p {
+.hero-intro p {
     font-size:14px
   }
 
-  .hero-intro .button {
+.hero-intro .button {
     margin-top:22px
   }
 
-  .button {
+.button {
     font-size:9px;
     min-height:48px;
     padding:14px 17px;
     gap:35px
   }
 
-  .hero-rule .mono {
+.hero-rule .mono {
     font-size:6px
   }
 
-  .hero-rule {
+.hero-rule {
     padding:18px 0
   }
 
@@ -1037,12 +773,12 @@ html[data-enhanced] .story-visual {
     gap:20px
   }
 
-  .section-kicker>span:last-child {
+.section-kicker>span:last-child {
     text-align:right;
     max-width:135px
   }
 
-  h2 {
+h2 {
     font-size:43px
   }
 
@@ -1051,76 +787,40 @@ html[data-enhanced] .story-visual {
     font-size:13px
   }
 
-  .project {
-    padding:27px 0
-  }
-
-  .project-heading {
-    grid-template-columns:30px 1fr 25px
-  }
-
-  .project-heading h3 {
-    font-size:27px
-  }
-
-  .project-glyph {
-    font-size:25px
-  }
-
-  .project-body {
-    margin-left:30px;
-    margin-right:0;
-    grid-template-columns:1fr;
-    gap:20px
-  }
-
-  .project-body>p {
-    font-size:13px
-  }
-
-  .project-heading .eyebrow {
-    font-size:8px
-  }
-
-  .stack {
-    font-size:8px;
-    margin-bottom:4px
-  }
-
-  .collab-heading {
+.collab-heading {
     font-size:15vw;
     margin-bottom:45px
   }
 
-  .story-layout {
+.story-layout {
     display:block
   }
 
-  .story-visual {
+.story-visual {
     display:none
   }
 
-  .story-chapter {
+.story-chapter {
     min-height:auto;
     padding:25px 0 40px;
     border-top:1px solid var(--line)
   }
 
-  .story-chapter h3 {
+.story-chapter h3 {
     font-size:28px
   }
 
-  .story-chapter>p {
+.story-chapter>p {
     font-size:13px;
     max-width:100%
   }
 
-  .chapter-inline {
+.chapter-inline {
     display:block;
     margin-top:25px
   }
 
-  .chapter-inline img {
+.chapter-inline img {
     width:100%;
     aspect-ratio:16/9;
     object-fit:contain;
@@ -1128,33 +828,33 @@ html[data-enhanced] .story-visual {
     background:#111
   }
 
-  .chapter-inline figcaption {
+.chapter-inline figcaption {
     font-size:8px;
     color:#999;
     margin-top:10px
   }
 
-  .archive-header {
+.archive-header {
     margin-top:20px;
     align-items:start
   }
 
-  .archive-header h3 {
+.archive-header h3 {
     font-size:8px
   }
 
-  .archive-header>span {
+.archive-header>span {
     font-size:7px;
     max-width:100px;
     text-align:right
   }
 
-  .archive-grid {
+.archive-grid {
     grid-template-columns:repeat(2,1fr);
     gap:20px 12px
   }
 
-  .archive-caption {
+.archive-caption {
     font-size:7px
   }
 
@@ -1162,25 +862,21 @@ html[data-enhanced] .story-visual {
     max-width:440px
   }
 
-  .about-copy h2 {
+.about-copy h2 {
     font-size:48px
   }
 
-  .about-copy>p:not(.eyebrow) {
+.about-copy>p:not(.eyebrow) {
     font-size:14px
   }
 
-  .contact h2 {
+.contact h2 {
     font-size:16vw
   }
 
-  .contact-intro {
+.contact-intro {
     font-size:12px;
     margin-bottom:30px
-  }
-
-  .contact-star {
-    margin-left:12px
   }
 
 .contact-bottom p {
@@ -1191,63 +887,63 @@ html[data-enhanced] .story-visual {
     font-size:7px
   }
 
-  .site-footer>div {
+.site-footer>div {
     width:100%;
     justify-content:space-between;
     gap:15px
   }
 
-  .site-footer>div a {
+.site-footer>div a {
     font-size:8px
   }
 
-  .archive-dialog {
+.archive-dialog {
     padding:14px
   }
 
-  .dialog-bottom p {
+.dialog-bottom p {
     display:none
   }
 
-  .dialog-bottom button {
+.dialog-bottom button {
     font-size:9px
   }
 
-  .hover-preview {
+.hover-preview {
     display:none!important
   }
 
 }
 
 @media(max-width:700px) {
-  html[data-enhanced] .chapter-inline {
+html[data-enhanced] .chapter-inline {
     display:block
   }
 
-  html[data-enhanced] .story-visual {
+html[data-enhanced] .story-visual {
     display:none
   }
 
 }
 
 @media(prefers-reduced-motion:reduce) {
-  html {
+html {
     scroll-behavior:auto
   }
 
-  *,*::before,*::after {
+*, *::before, *::after {
     animation:none!important;
     transition:none!important
   }
 
-  .hover-preview {
+.hover-preview {
     display:none!important
   }
 
 }
 
 @media(prefers-contrast:more) {
-  :root {
+:root {
     --muted:#ccc;
     --line:#777
   }
@@ -1255,36 +951,35 @@ html[data-enhanced] .story-visual {
 }
 
 @media print {
-  .site-header,.section-nav,.hover-preview,.archive-grid,.archive-dialog {
+.site-header, .section-nav, .hover-preview, .archive-grid, .archive-dialog {
     display:none
   }
 
-  .hero,.section-shell,.site-footer {
+.hero, .section-shell, .site-footer {
     margin:0;
     padding:30px 0;
     min-height:auto
   }
 
-  .story-layout {
+.story-layout {
     display:block
   }
 
-  .chapter-inline {
+.chapter-inline {
     display:block
   }
 
-  .story-visual {
+.story-visual {
     display:none
   }
 
-  body {
+body {
     background:white;
     color:black
   }
 
-  body:after {
+body:after {
     display:none
   }
 
 }
-
