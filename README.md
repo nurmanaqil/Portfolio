@@ -2,65 +2,89 @@
 
 Personal portfolio of **Nurman Aqil Wicaksono**, an Informatics undergraduate at Universitas Sebelas Maret interested in project management, team coordination, and technology.
 
-Built with **React 19 + Vite 7 + Tailwind CSS 4**, with static prerendering for initial content and React hydration for interactions. The site includes a scroll-driven 3D collaboration archive, floating glass navigation, and subtle smoke/pixel effects, with reduced-motion fallbacks.
+Built with **React 19, Vite 7, and Tailwind CSS 4**. Features include static prerendering, a scroll-driven 3D collaboration archive, floating navigation, and subtle visual effects with reduced-motion fallbacks.
 
 ## Development
 
-Requires **Node.js 22.12+** (Node 24 recommended).
+Requires **Node.js 22.12+**; Node 24 is recommended.
 
 ```sh
 npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. Vite updates the browser automatically as components change. On Windows, `start.cmd` is available and installs dependencies if npm is available.
+Open `http://127.0.0.1:4173`. On Windows, `start.cmd` is also available. Use `npm.cmd` instead of `npm` if PowerShell blocks npm scripts.
 
-For reproducible installs with the committed lockfile, use `corepack pnpm install --frozen-lockfile` instead of `npm install`.
+For a reproducible installation using the committed lockfile: `corepack pnpm install --frozen-lockfile`.
 
 ```sh
-npm run build      # Build and prerender to dist/
-npm test           # Verify built HTML, assets, and animation geometry
-npm run preview    # Serve the production build
+npm run build      # Generate and prerender dist/
+npm test           # Verify the production build
+npm run preview    # Preview the production build locally
 ```
 
-Existing commands `node scripts/dev.mjs` and `node scripts/build.mjs` remain supported.
-
-## Structure
+## Content and structure
 
 | Path | Purpose |
 |---|---|
-| `src/App.jsx` | Main layout and page sections |
-| `src/components/Archive.jsx` | React gallery, hover preview, and image viewer |
-| `src/hooks` | Scroll/navigation lifecycle and visual effects |
-| `src/data` | Profile, content, and 11-image archive manifest |
-| `src/styles/tailwind.css` | Tailwind entry, theme tokens, and glass utility |
-| `src/styles` | Custom typography and specialized animation styles |
-| `src/scripts` | Animation geometry, smoke, and cursor effects |
-| `public/assets` | Optimized WebP images |
-| `scripts` | Vite server and prerender build |
-| `tests` | Built-content, asset, and motion checks |
+| `src/App.jsx` | Page sections and layout |
+| `src/components/Archive.jsx` | Gallery and image viewer |
+| `src/data/content.mjs` | Profile, links, and individually editable photo captions |
+| `src/hooks` / `src/scripts` | Navigation and visual interactions |
+| `src/styles` | Tailwind entry, design tokens, and custom effects |
+| `public/assets` | Optimized images shipped with the site |
+| `scripts` / `tests` | Build tools and verification |
+| `firebase.json` | Firebase Hosting configuration targeting dist/ |
 
-The archive includes six online-session screenshots and five in-person photographs. Edit each photo’s `caption` field in `src/data/content.mjs`; the same caption is used on the card, hover preview, and image viewer. Project numbers retain their original identities. Duplicate source photos are excluded. Originals remain in the local `asset/` directory; optimized images are committed in `public/assets/`.
+The archive contains 11 photos. Edit each image’s `caption` in `src/data/content.mjs`; labels follow their original photos even when the gallery order is mixed. Original images remain in the local `asset/` folder.
 
-Layout, spacing, responsive breakpoints, navigation states, and UI borders use Tailwind utilities in JSX. Custom CSS handles the 3D gallery, blur, smoke, and fine typography. Tailwind is compiled by the official Vite plugin; no CDN script is used.
+## Deployment
 
-## Cloudflare deployment
+The build is a **static website**. Deploy only **`dist/`**, not the repository root or `public/`. The same build can be hosted on Firebase or Cloudflare without changing the application.
 
-The existing **Workers Static Assets** deployment remains compatible:
+### Firebase Hosting
 
-- **Build command:** `node scripts/build.mjs`
-- **Deploy command:** `npx wrangler deploy --assets ./dist --name portfolio --compatibility-date 2026-10-27`
-- **Node version:** 24 (also declared in `.node-version`).
+The project now includes Firebase Hosting configuration. Install the CLI and authenticate once:
 
-Commit the dependency lockfile and Vite configuration so Cloudflare can install the new dependencies. Deploy only `dist/`; no application server is required. The site retains preview indexing restrictions until explicitly enabled for search.
+```powershell
+npm.cmd install -g firebase-tools
+firebase.cmd login
+```
 
-To push this migration without including local originals or working documents:
+Create a Firebase project in the console, then build and deploy from this repository’s root:
+
+```powershell
+npm.cmd run build
+firebase.cmd deploy --only hosting --project YOUR_PROJECT_ID
+```
+
+Replace `YOUR_PROJECT_ID` with the target Firebase project ID, not its display name. Use these same two commands for every website update. There is no need to rerun `firebase init hosting` because `firebase.json` is already provided.
+
+To switch projects, change `--project YOUR_PROJECT_ID`. Alternatively, run `firebase.cmd use --add`, select the new project, and assign it the alias `default`; subsequent deployments can omit `--project`.
+
+**A GitHub push does not automatically deploy to Firebase** unless GitHub deployment automation has been configured separately. Existing deployments in other projects or on Cloudflare remain active until explicitly disabled.
+
+### Cloudflare
+
+| Platform | Build command | Output / deployment |
+|---|---|---|
+| Workers Static Assets | `node scripts/build.mjs` | Deploy command below |
+| Pages | `node scripts/build.mjs` | Output directory: `dist`; framework: None |
+
+Workers deploy command:
 
 ```sh
-git add src public scripts tests package.json pnpm-lock.yaml pnpm-workspace.yaml .node-version vite.config.js index.html start.cmd README.md .gitignore
-git commit -m "Migrate portfolio to React and Vite"
-git push origin main
+npx wrangler deploy --assets ./dist --name portfolio --compatibility-date 2026-10-27
 ```
+
+Use Node 24 for hosted builds. Cloudflare deployment on push depends on the repository integration and production branch configured in its dashboard.
+
+### When changing the domain or hosting platform
+
+- Update absolute `og:image` and `twitter:image` URLs in `index.html` to the new public domain.
+- Confirm the favicon, photo viewer, mobile layout, and external links on the deployed URL.
+- Remove the preview `noindex` meta tag and update `public/robots.txt` when ready for search indexing.
+- Keep `firebase.json`, build configuration, and the dependency lockfile in Git. Do not commit `node_modules/`, `dist/`, or local hosting caches.
 
 ## Connect
 

@@ -4,6 +4,7 @@ node_modules/
 .DS_Store
 *.log
 .wrangler/
+.firebase/
 .env
 .env.*
 !.env.example
