@@ -28,12 +28,22 @@ export const sessions = [
   ['Screenshot 2026-08-27 202645.png', 'A group session with shared virtual backgrounds.'],
   ['Screenshot 2026-09-20 163803.png', 'Another moment of connection in an online group session.'],
   ['Screenshot 2026-10-19 211255.png', 'A small online gathering from my collaboration archive.'],
-].map(([source, alt], index) => ({
+  ['FullSizeRender.jpeg', 'Aqil with fellow participants at an in-person gathering.', 810, 1440],
+  ['IMG_0243.jpg', 'Participants posing together at a Global Village event.', 810, 1440],
+  ['IMG_1868.jpeg', 'A group photograph at an in-person organizational gathering.', 1080, 1440],
+  ['IMG_6413.jpg', 'Participants together at an AIESEC in UNS welcoming event.'],
+  ['IMG_9294.jpeg', 'A group photograph at Forum Merdeka Surakarta 2026.'],
+].map(([source, alt, width = 1440, height = 810], index) => ({
   id: `session-${String(index + 1).padStart(2, '0')}`,
-  source, alt, image: `/assets/session-${String(index + 1).padStart(2, '0')}.webp`,
+  source, alt, width, height, image: `/assets/session-${String(index + 1).padStart(2, '0')}.webp`,
   caption: `Project ${index + 1}`,
   publicationApproved: false, projectId: null,
 }));
+
+// Mixed presentation order, shared by prerendering and React hydration.
+// Keep original project identities and narrative image references unchanged.
+export const archiveSessions = [10, 3, 13, 0, 7, 11, 5, 14, 2, 9, 12, 6, 1, 8, 4]
+  .map(index => sessions[index]);
 
 export const projects = [
   {

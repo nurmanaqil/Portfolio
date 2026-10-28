@@ -1,5 +1,7 @@
 /** Small, bounded DOM particle trail. Never replaces the native pointer. */
 export function initPixelCursor(reducedMotion, finePointer) {
+  const controller = new AbortController();
+  const { signal } = controller;
   const layer = document.createElement('div');
   layer.className = 'pixel-cursor-layer';
   layer.setAttribute('aria-hidden', 'true');
@@ -34,9 +36,10 @@ export function initPixelCursor(reducedMotion, finePointer) {
       particles.set(pixel, animation);
       animation.onfinish = () => { pixel.remove(); particles.delete(pixel); };
     }
-  }, { passive: true });
-  reducedMotion.addEventListener('change', clear);
-  finePointer.addEventListener('change', clear);
-  document.addEventListener('visibilitychange', clear);
-  document.documentElement.addEventListener('pointerleave', clear);
+  }, { passive: true, signal });
+  reducedMotion.addEventListener('change', clear, { signal });
+  finePointer.addEventListener('change', clear, { signal });
+  document.addEventListener('visibilitychange', clear, { signal });
+  document.documentElement.addEventListener('pointerleave', clear, { signal });
+  return () => { controller.abort(); clear(); layer.remove(); };
 }

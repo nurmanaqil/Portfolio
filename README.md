@@ -1,51 +1,66 @@
 # Aqil — Personal Portfolio
 
-Personal portfolio of **Nurman Aqil Wicaksono**, an Informatics undergraduate at Universitas Sebelas Maret with an interest in project management, team coordination, and technology.
+Personal portfolio of **Nurman Aqil Wicaksono**, an Informatics undergraduate at Universitas Sebelas Maret interested in project management, team coordination, and technology.
 
-The website presents my background, software explorations, and collaboration archive from my role as **Project Controlling Manager at AIESEC in UNS**.
+Built with **React 19 + Vite 7 + Tailwind CSS 4**, with static prerendering for initial content and React hydration for interactions. The site includes a scroll-driven 3D collaboration archive, floating glass navigation, and subtle smoke/pixel effects, with reduced-motion fallbacks.
 
-## Experience
+## Development
 
-- Responsive, light editorial design with floating glass navigation.
-- Scroll-driven 3D gallery, image viewer, and subtle smoke/pixel effects.
-- Keyboard navigation and reduced-motion fallbacks.
-- Static HTML with modular CSS and JavaScript; no runtime dependencies.
-
-## Local development
-
-Requires **Node.js 22+**. No dependency installation is needed.
+Requires **Node.js 22.12+** (Node 24 recommended).
 
 ```sh
-node scripts/dev.mjs
+npm install
+npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. On Windows, `start.cmd` is also available.
+Open `http://127.0.0.1:4173`. Vite updates the browser automatically as components change. On Windows, `start.cmd` is available and installs dependencies if npm is available.
+
+For reproducible installs with the committed lockfile, use `corepack pnpm install --frozen-lockfile` instead of `npm install`.
 
 ```sh
-node scripts/build.mjs          # Generate dist/
-node --test tests/*.test.mjs    # Run checks
+npm run build      # Build and prerender to dist/
+npm test           # Verify built HTML, assets, and animation geometry
+npm run preview    # Serve the production build
 ```
 
-## Project structure
+Existing commands `node scripts/dev.mjs` and `node scripts/build.mjs` remain supported.
 
-| Directory | Purpose |
+## Structure
+
+| Path | Purpose |
 |---|---|
-| `src/components` | HTML templates |
-| `src/data` | Profile, copy, and image manifest |
-| `src/styles` | Design tokens and responsive styles |
-| `src/scripts` | Navigation and visual interactions |
-| `public` | Optimized images and static assets |
-| `scripts` | Build and development tools |
-| `tests` | Content and animation checks |
+| `src/App.jsx` | Main layout and page sections |
+| `src/components/Archive.jsx` | React gallery, hover preview, and image viewer |
+| `src/hooks` | Scroll/navigation lifecycle and visual effects |
+| `src/data` | Profile, content, and 15-image archive manifest |
+| `src/styles/tailwind.css` | Tailwind entry, theme tokens, and glass utility |
+| `src/styles` | Custom typography and specialized animation styles |
+| `src/scripts` | Animation geometry, smoke, and cursor effects |
+| `public/assets` | Optimized WebP images |
+| `scripts` | Vite server and prerender build |
+| `tests` | Built-content, asset, and motion checks |
 
-## Deployment
+The archive includes ten online-session screenshots and five additional in-person photographs. Duplicate source photos are excluded. Originals remain in the local `asset/` directory; optimized images are committed in `public/assets/`.
 
-Deploy the generated **`dist/`** directory. For Cloudflare Workers Static Assets:
+Layout, spacing, responsive breakpoints, navigation states, and UI borders use Tailwind utilities in JSX. Custom CSS handles the 3D gallery, blur, smoke, and fine typography. Tailwind is compiled by the official Vite plugin; no CDN script is used.
 
-- **Build:** `node scripts/build.mjs`
-- **Deploy:** `npx wrangler deploy --assets ./dist --name portfolio --compatibility-date 2026-10-27`
+## Cloudflare deployment
 
-The site currently retains preview indexing restrictions. Update the robots meta tag and `public/robots.txt` when ready for search indexing.
+The existing **Workers Static Assets** deployment remains compatible:
+
+- **Build command:** `node scripts/build.mjs`
+- **Deploy command:** `npx wrangler deploy --assets ./dist --name portfolio --compatibility-date 2026-10-27`
+- **Node version:** 24 (also declared in `.node-version`).
+
+Commit the dependency lockfile and Vite configuration so Cloudflare can install the new dependencies. Deploy only `dist/`; no application server is required. The site retains preview indexing restrictions until explicitly enabled for search.
+
+To push this migration without including local originals or working documents:
+
+```sh
+git add src public scripts tests package.json pnpm-lock.yaml pnpm-workspace.yaml .node-version vite.config.js index.html start.cmd README.md .gitignore
+git commit -m "Migrate portfolio to React and Vite"
+git push origin main
+```
 
 ## Connect
 

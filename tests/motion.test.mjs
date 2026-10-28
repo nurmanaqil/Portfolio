@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { archivePose } from '../src/scripts/archive-motion.js';
+import { archivePose, archiveEdgeAppearance, portraitVisibility } from '../src/scripts/archive-motion.js';
 
 test('every archive image travels upward as scroll progresses', () => {
   for (let index = 0; index < 10; index++) {
@@ -27,4 +27,22 @@ test('gallery starts and ends invisible with a blurred transition', () => {
   const middle = archivePose(4, 10, .5, 720);
   assert.ok(middle.opacity > 0);
   assert.equal(middle.blur, 0);
+});
+
+test('mobile cards fade and blur completely before crossing the stage edges', () => {
+  const center = archiveEdgeAppearance({ y: 0, opacity: .8, blur: 0 }, 844, true);
+  const nearEdge = archiveEdgeAppearance({ y: 330, opacity: .8, blur: 0 }, 844, true);
+  const edge = archiveEdgeAppearance({ y: 422, opacity: .8, blur: 0 }, 844, true);
+  assert.equal(center.opacity, .8);
+  assert.ok(nearEdge.opacity > 0 && nearEdge.opacity < center.opacity);
+  assert.ok(nearEdge.blur > 0);
+  assert.equal(edge.opacity, 0);
+  assert.ok(edge.blur >= 20);
+});
+
+test('background portrait is visible initially and gone before Selected Work', () => {
+  assert.equal(portraitVisibility(0, 844, 4500, 844), 1);
+  assert.ok(portraitVisibility(600, 844, 4500, 844) < 1);
+  assert.equal(portraitVisibility(1300, 844, 4500, 844), 0);
+  assert.equal(portraitVisibility(500, 844, 1100, 844), 0);
 });

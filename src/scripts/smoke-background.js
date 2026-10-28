@@ -1,5 +1,7 @@
 /** Low-resolution smoke field: softened base and a faint pixelated overlay. */
 export function initSmokeBackground(reducedMotion) {
+  const controller = new AbortController();
+  const { signal } = controller;
   const layer = document.createElement('div');
   layer.className = 'smoke-background';
   layer.setAttribute('aria-hidden', 'true');
@@ -46,8 +48,9 @@ export function initSmokeBackground(reducedMotion) {
     if (!document.hidden && !reducedMotion.matches) { lastTime = performance.now(); frame = requestAnimationFrame(animate); }
     else draw(phase);
   }
-  window.addEventListener('resize', resize, { passive: true });
-  document.addEventListener('visibilitychange', sync);
-  reducedMotion.addEventListener('change', sync);
+  window.addEventListener('resize', resize, { passive: true, signal });
+  document.addEventListener('visibilitychange', sync, { signal });
+  reducedMotion.addEventListener('change', sync, { signal });
   resize(); sync();
+  return () => { controller.abort(); cancelAnimationFrame(frame); layer.remove(); };
 }

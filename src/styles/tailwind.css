@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./main.css" layer(components);
+@import "./refinement.css" layer(components);
+
+@theme inline {
+  --color-canvas: var(--bg);
+  --color-ink: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --font-sans: 'Segoe UI', system-ui, sans-serif;
+  --font-editorial: 'Palatino Linotype', Palatino, Georgia, serif;
+}
+
+/* Bespoke refraction/highlight treatment shared by the floating menu. */
+@utility glass-surface {
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border: 1px solid #ffffffb0;
+  box-shadow: 0 8px 28px #28321b12, inset 0 1px 1px #ffffffed, inset 0 -1px 1px #9b9e9226;
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+  isolation: isolate;
+}

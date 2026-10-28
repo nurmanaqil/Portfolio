@@ -3,3 +3,7 @@ dist/
 node_modules/
 .DS_Store
 *.log
+.wrangler/
+.env
+.env.*
+!.env.example
