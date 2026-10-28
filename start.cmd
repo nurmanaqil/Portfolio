@@ -11,6 +11,19 @@ if not defined PORTFOLIO_NODE (
   pause
   exit /b 1
 )
+if not exist "node_modules\vite\package.json" (
+  where npm.cmd >nul 2>nul
+  if errorlevel 1 (
+    echo Dependencies are missing. Install Node.js with npm, then run npm install.
+    pause
+    exit /b 1
+  )
+  call npm.cmd install
+  if errorlevel 1 (
+    pause
+    exit /b 1
+  )
+)
 echo Open http://127.0.0.1:4173 in your browser once the server is ready.
 echo Keep this window open. Press Ctrl+C to stop the server.
 "%PORTFOLIO_NODE%" scripts\dev.mjs %*
